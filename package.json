@@ -11,8 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
+    "mongoose": "^9.5.0",
     "nodemon": "^3.0.1",
-    "pepesan": "github:mqad21/pepesan",
+    "pepesan": "^3.4.11",
     "string-template": "^1.0.0"
   },
   "nodemonConfig": {
