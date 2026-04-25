@@ -12,9 +12,9 @@ const { ALLOWED_NUMBERS, PORT, MONGODB_URI } = process.env;
       ALLOWED_NUMBERS && ALLOWED_NUMBERS.trim() !== ""
         ? ALLOWED_NUMBERS.split(",")
         : null,
-    browserName: "Dewakoding App",
+    browserName: "Tikko Bot",
     version,
-    // Tambahkan konfigurasi session storage ke MongoDB
+    // Konfigurasi session storage ke MongoDB agar tidak perlu scan ulang di hosting
     sessionStorage: {
       type: "mongodb",
       uri: MONGODB_URI,
@@ -30,6 +30,13 @@ const { ALLOWED_NUMBERS, PORT, MONGODB_URI } = process.env;
       }
     },
   };
+
   const pepesan = Pepesan.init(router, config);
+
+  // Endpoint Health Check untuk cron-job.org agar bot tidak "tidur" di Render
+  pepesan.app.get("/", (req, res) => {
+    res.send("Tikko Bot is running...");
+  });
+
   await pepesan.connect();
 })();
